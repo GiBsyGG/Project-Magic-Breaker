@@ -53,7 +53,10 @@ public class Ball : MonoBehaviour
      {
           if (collision.collider.CompareTag("Platform"))
           {
-               RedirectBall();
+
+               // Solo se redireccionara al pegar arriba
+               if(collision.GetContact(0).normal == new Vector2(0, 1))
+                    RedirectBall();
           }
      }
 
