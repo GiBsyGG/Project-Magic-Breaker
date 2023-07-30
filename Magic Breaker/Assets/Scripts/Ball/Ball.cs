@@ -26,6 +26,13 @@ public class Ball : MonoBehaviour
      private void Start()
      {
           ballRigidbody = GetComponent<Rigidbody2D>();
+
+          GameEvents.OnOutBallEvent += ResetBall;
+     }
+
+     private void OnDestroy()
+     {
+          GameEvents.OnOutBallEvent -= ResetBall;
      }
 
      // Update is called once per frame
@@ -44,7 +51,6 @@ public class Ball : MonoBehaviour
           {
                // TODO: Implementar la aceleracion con el tiempo o cantidad de rebotes a la bola
                // TODO: A medida que la bola acelera estos valores minimos y maximos van cambiando tambien
-               // TODO: Dependiendo donde golpee la bola en la plataforma se direccione, para que el jugador tenga cierto control de la bola
                SpeedStabilizing();
           }
     }
@@ -124,5 +130,18 @@ public class Ball : MonoBehaviour
           float factor = (this.transform.position.x - platform.position.x) / platform.localScale.x;
 
           return factor;
+     }
+
+     /// <summary>
+     /// Devuelve la bola a estado inicial
+     /// </summary>
+     private void ResetBall()
+     {
+          ballRigidbody.velocity = Vector3.zero;
+
+          // Posicionamos por encima de la plataforma
+          transform.position = platform.position + new Vector3(0, 0.5f, 0);
+
+          ballInGame = false;
      }
 }
