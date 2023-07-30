@@ -6,4 +6,6 @@ using UnityEngine;
 public static class GameEvents
 {
      public static Action OnOutBallEvent;
+
+     //TODO: Evento subida de nivel
 }

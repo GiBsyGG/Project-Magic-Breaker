@@ -20,12 +20,17 @@ public class Player : MonoBehaviour
 
      private void LoseLifePoint()
      {
-          if (lifePoints > 0)
+          if (lifePoints > 1)
           {
                lifePoints--;
                Debug.Log(lifePoints);
           }
+          else
+          {
+               GameManager.Instance.GameOver();
+          }
 
           //TODO: En caso de no tener vidas Mostrar el Game Over
+
      }
 }
