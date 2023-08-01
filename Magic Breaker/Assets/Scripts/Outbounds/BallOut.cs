@@ -10,6 +10,7 @@ public class BallOut : MonoBehaviour
           if (collision.CompareTag("Ball"))
           {
                GameEvents.OnOutBallEvent?.Invoke();
+               GameEvents.OnStreakChange?.Invoke(0);
           }
      }
 }

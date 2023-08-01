@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
           if (lifePoints > 1)
           {
                lifePoints--;
-               Debug.Log(lifePoints);
+               GameEvents.OnHealthChange?.Invoke(lifePoints);
           }
           else
           {

@@ -7,5 +7,9 @@ public static class GameEvents
 {
      public static Action OnOutBallEvent;
 
+     public static Action<int> OnHealthChange; //Se pasan los puntos de vida del jugador
+
+     public static Action<int> OnStreakChange; //Se pasa el valor de la racha que se lleva
+
      //TODO: Evento subida de nivel
 }

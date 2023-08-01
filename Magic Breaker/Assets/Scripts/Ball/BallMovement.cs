@@ -3,16 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class BallMovement : MonoBehaviour
 {
      [SerializeField]
      private float ballThrust = 5f;
 
      [SerializeField]
-     private float ballMaxSpeed = 12f;
+     private float ballMaxSpeed = 6f;
 
      [SerializeField]
-     private float minSpeedThershhold = 10f;
+     private float minSpeedThershhold = 4f;
+
+     private float minSpeedInitial;
+     private float maxSpeedInitial;
 
      private bool ballInGame = false; // flag para controlar si la bola en juego
 
@@ -26,6 +29,9 @@ public class Ball : MonoBehaviour
      private void Start()
      {
           ballRigidbody = GetComponent<Rigidbody2D>();
+
+          minSpeedInitial = minSpeedThershhold;
+          maxSpeedInitial = ballMaxSpeed;
 
           GameEvents.OnOutBallEvent += ResetBall;
      }
@@ -87,10 +93,10 @@ public class Ball : MonoBehaviour
      {
           // Restringir la velocidad de la bola
           ballRigidbody.velocity = Vector3.ClampMagnitude(ballRigidbody.velocity, ballMaxSpeed);
-
+          //Debug.Log(ballRigidbody.velocity.magnitude);
           // Darle una velocidad minima a la bola
           if (ballRigidbody.velocity.magnitude < minSpeedThershhold)
-          {
+          {  
                ballRigidbody.velocity = ballRigidbody.velocity.normalized * ballThrust;
           }
      }
@@ -143,5 +149,41 @@ public class Ball : MonoBehaviour
           transform.position = platform.position + new Vector3(0, 0.5f, 0);
 
           ballInGame = false;
+
+          // Devolvemos las velocidades maximas y minimas
+          ballMaxSpeed = maxSpeedInitial;
+          minSpeedThershhold = minSpeedInitial;
+     }
+
+     /// <summary>
+     /// Getter y Setter para la variable minSpeedThershhold
+     /// </summary>
+     public float MinSpeedThershhold
+     {
+          get
+          {
+               return minSpeedThershhold;
+          }
+
+          set
+          {
+               minSpeedThershhold = value;
+          }
+     }
+
+     /// <summary>
+     /// Getter y Setter para la variable ballMaxSpeed
+     /// </summary>
+     public float BallMaxSpeed
+     {
+          get
+          {
+               return ballMaxSpeed;
+          }
+
+          set
+          {
+               ballMaxSpeed = value;
+          }
      }
 }
