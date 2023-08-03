@@ -22,8 +22,6 @@ public class BallMovement : MonoBehaviour
      [SerializeField]
      private Transform platform;
 
-     //TODO: Entero con rebotes para armar combos
-
      private Rigidbody2D ballRigidbody;
 
      private void Start()
@@ -55,8 +53,6 @@ public class BallMovement : MonoBehaviour
           }
           else
           {
-               // TODO: Implementar la aceleracion con el tiempo o cantidad de rebotes a la bola
-               // TODO: A medida que la bola acelera estos valores minimos y maximos van cambiando tambien
                SpeedStabilizing();
           }
     }

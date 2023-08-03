@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class BallStreak : MonoBehaviour
@@ -15,9 +16,12 @@ public class BallStreak : MonoBehaviour
 
      private int streak = 0;
 
+     private bool maxReached = false; // Flag para controlar si es alcanzado el maximo
+
      private void Start()
      {
           GameEvents.OnOutBallEvent += ResetStreak;
+          maxReached = false;
      }
 
      private void OnDestroy()
@@ -37,10 +41,14 @@ public class BallStreak : MonoBehaviour
 
                     if (streak % 5 == 0)
                     {
-                         Debug.Log("Acelera");
-                         ballMovement.MinSpeedThershhold += 5f;
-                         ballMovement.BallMaxSpeed += 5f;
+                         
+                         ballMovement.MinSpeedThershhold += 2f;
+                         ballMovement.BallMaxSpeed += 2f;
                     }
+               }
+               else if(streak == maxStreak)
+               {
+                    maxReached = true;
                }
           }
      }
@@ -48,5 +56,11 @@ public class BallStreak : MonoBehaviour
      private void ResetStreak()
      {
           streak = 0;
+          maxReached = false;
+     }
+
+     public bool MaxReached
+     {
+          get { return maxReached; }
      }
 }
