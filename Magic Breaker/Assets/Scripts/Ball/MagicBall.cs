@@ -6,22 +6,78 @@ public enum MagicBallTypes { normal, fire, water, wind, thunder}
 
 public class MagicBall : MonoBehaviour
 {
-     //TODO: Añadir el tipo de bola que es
      [SerializeField]
      private int ballDamage = 1;
 
      [SerializeField]
-     private MagicBallTypes ballTypes = MagicBallTypes.normal;
+     private MagicBallTypes ballType = MagicBallTypes.normal;
 
      private void OnCollisionEnter2D(Collision2D collision)
      {
           if (collision.collider.CompareTag("Brick"))
           {
+               switch (ballType)
+               {
+                    case MagicBallTypes.fire:
 
-               // TODO: Crear una interacción diferente segun el tipo de bola, como areas de daño u otros
-               if(collision.gameObject.TryGetComponent(out Brick brick))
-                    brick.takeImpact(ballDamage); 
+                         FireBallImpact();
+
+                         break;
+
+                    case MagicBallTypes.thunder:
+
+                         ThunderBalImpact(collision);
+
+                         break;
+
+                    default:
+                         if (collision.gameObject.TryGetComponent(out Brick brick))
+                              brick.takeImpact(ballDamage);
+
+                         break;
+               }
           }
      }
 
+     private void FireBallImpact()
+     {
+          // Uso overlapcircleAll para aplicar daño en area detectando los colliders en un area
+          // Este devuelve una lista de colliders detectados en esa area
+          Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2f);
+          foreach (Collider2D collider in colliders)
+          {
+               if (collider.gameObject.TryGetComponent(out Brick brickf))
+                    brickf.takeImpact(ballDamage);
+          }
+     }
+
+     private void ThunderBalImpact(Collision2D collision)
+     {
+          // Aplicar daño a bloque impactado
+          if (collision.gameObject.TryGetComponent(out Brick brickThunderImp))
+               brickThunderImp.takeImpact(ballDamage);
+
+          // Uso Raycast All Para aplicar daño a izquierda y derecha
+          // Este devuelve un array con los impactos del raycast
+          // 14.75 es la distancia de muro a muro
+          RaycastHit2D[] hitsR = Physics2D.RaycastAll(transform.position, Vector2.right, 14.75f - Mathf.Abs(transform.position.x));
+          RaycastHit2D[] hitsL = Physics2D.RaycastAll(transform.position, Vector2.right, 14.75f - Mathf.Abs(transform.position.x));
+
+          // Aplicar daño a linea derecha
+          foreach (RaycastHit2D hit in hitsR)
+          {
+               if (hit.collider.gameObject.TryGetComponent(out Brick brickt))
+               {
+                    brickt.takeImpact(ballDamage);
+               }
+          }
+          // Aplicar daño a line izquierda
+          foreach (RaycastHit2D hit in hitsL)
+          {
+               if (hit.collider.gameObject.TryGetComponent(out Brick brickt))
+               {
+                    brickt.takeImpact(ballDamage);
+               }
+          }
+     }
 }

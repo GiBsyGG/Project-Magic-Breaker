@@ -41,7 +41,6 @@ public class PowerBall : MonoBehaviour
           {
                if(!powerActive && streak.MaxReached)
                {
-                    Debug.Log(streak.MaxReached);
                     ActiveRandomPowerBall();
                }
           }

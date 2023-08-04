@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballDamage: 2
-  ballTypes: 2
+  ballType: 2
 --- !u!58 &3653012148294274706
 CircleCollider2D:
   m_ObjectHideFlags: 0

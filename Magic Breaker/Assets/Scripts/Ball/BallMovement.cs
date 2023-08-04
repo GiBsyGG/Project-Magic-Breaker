@@ -182,4 +182,6 @@ public class BallMovement : MonoBehaviour
                ballMaxSpeed = value;
           }
      }
+
+     // TODO: Funcion para evitar bola atascada horizontal, probar usando onCollisionExit
 }
