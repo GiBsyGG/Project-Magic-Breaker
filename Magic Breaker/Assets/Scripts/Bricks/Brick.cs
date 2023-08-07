@@ -8,6 +8,9 @@ public class Brick : MonoBehaviour
      [SerializeField]
      private int brickLife = 1;
 
+     [SerializeField]
+     private Sprite[] brickSprites;
+
      public void takeImpact(int damage)
      {
           brickLife -= damage;
