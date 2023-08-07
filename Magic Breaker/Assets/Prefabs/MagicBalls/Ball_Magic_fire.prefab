@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballDamage: 1
+  ballMovement: {fileID: 0}
   ballType: 1
 --- !u!58 &2950945188782824626
 CircleCollider2D:

@@ -62,8 +62,8 @@ public class BallMovement : MonoBehaviour
           if (collision.collider.CompareTag("Platform"))
           {
 
-               // Solo se redireccionara al pegar arriba
-               if(collision.GetContact(0).normal == new Vector2(0, 1))
+               // Solo se redireccionara al pegar arriba y  si está en juego
+               if(collision.GetContact(0).normal == new Vector2(0, 1) && ballInGame)
                     RedirectBall();
           }
      }
@@ -137,7 +137,7 @@ public class BallMovement : MonoBehaviour
      /// <summary>
      /// Devuelve la bola a estado inicial
      /// </summary>
-     private void ResetBall()
+     public void ResetBall()
      {
           ballRigidbody.velocity = Vector3.zero;
 

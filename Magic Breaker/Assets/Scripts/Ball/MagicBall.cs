@@ -37,6 +37,19 @@ public class MagicBall : MonoBehaviour
                          break;
                }
           }
+
+          // El poder de agua resetea la bola para controlar el lanzamiento
+          if (collision.collider.CompareTag("Platform"))
+          {
+               if(ballType == MagicBallTypes.water)
+               {
+                    if(transform.parent.TryGetComponent(out BallMovement ballMovement))
+                    {
+                         
+                         ballMovement.ResetBall();
+                    }
+               }
+          }
      }
 
      private void FireBallImpact()
