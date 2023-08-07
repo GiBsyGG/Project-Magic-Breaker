@@ -25,7 +25,6 @@ public class BrickCounter : MonoBehaviour
     private void CheckBricksNumber()
      {
           int bricksNumber  = transform.childCount;
-          Debug.Log(bricksNumber);
 
           if (bricksNumber <= 1)
           {

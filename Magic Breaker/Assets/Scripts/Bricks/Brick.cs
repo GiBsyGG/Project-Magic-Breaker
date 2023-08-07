@@ -20,5 +20,13 @@ public class Brick : MonoBehaviour
                GameEvents.OnBrickDestroyEvent?.Invoke();
                Destroy(gameObject);
           }
+          else
+          {
+               // Se cambia el Sprite según el daño
+               if (TryGetComponent(out SpriteRenderer spriteRenderer))
+               {
+                    spriteRenderer.sprite = brickSprites[brickLife - 1];
+               }
+          }
      }
 }

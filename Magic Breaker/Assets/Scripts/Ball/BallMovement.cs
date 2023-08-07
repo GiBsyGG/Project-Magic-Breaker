@@ -45,17 +45,23 @@ public class BallMovement : MonoBehaviour
           if (!ballInGame)
           {
                StickToPlatform();
-
-               if (Input.GetKeyDown("space"))
-               {
-                    ImpulseBall();
-               }
           }
           else
           {
                SpeedStabilizing();
           }
     }
+
+     /// <summary>
+     /// Funcion para recibir la interaccion del input system para impulsar la bola
+     /// </summary>
+     public void InputImpulseball()
+     {
+          if (!ballInGame)
+          {
+               ImpulseBall();
+          }
+     }
 
      private void OnCollisionEnter2D(Collision2D collision)
      {

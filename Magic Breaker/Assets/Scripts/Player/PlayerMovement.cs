@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,19 +14,20 @@ public class PlayerMovement : MonoBehaviour
 
      private Rigidbody2D platformRigidbody;
 
+     private PlayerInput playerInput;
+
      private void Start()
      {
           platformRigidbody = GetComponent<Rigidbody2D>();
+          playerInput = GetComponent<PlayerInput>();
      }
 
      // Usamos FixedUpdate al no usar el deltaTime
      // Si usamos deltaTime no usamos le FixedUpdate
      void FixedUpdate()
      {
-          float dir = Input.GetAxis("Horizontal");
-
-          // El movimiento es en X
-          Vector2 movement = new Vector2(dir, platformRigidbody.velocity.y);
+          // Usando el nuevo sistema de inputs de Unity
+          Vector2 movement = playerInput.actions["Move"].ReadValue<Vector2>();
 
           // Como estamos actualizando la velocidad, no usamos deltatime
           // La interpolacion es para movimientos suaves de una velocidad a otra

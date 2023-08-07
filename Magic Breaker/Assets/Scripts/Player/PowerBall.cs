@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PowerBall : MonoBehaviour
 {
@@ -34,12 +35,14 @@ public class PowerBall : MonoBehaviour
           GameEvents.OnOutBallEvent -= ResetPowerBall;
      }
 
-     // Update is called once per frame
-     void Update()
+     public void InputPowerBall(InputAction.CallbackContext callbackContext)
      {
-          if (Input.GetKeyDown(KeyCode.Space))
+          // El callback context es para ver si la tecla fue pulsada, mantenida o suelta
+          // tiene tres fases started, performed y cancel (pulsada, pulsado, suelto)
+
+          if (callbackContext.started)
           {
-               if(!powerActive && streak.MaxReached)
+               if (!powerActive && streak.MaxReached)
                {
                     ActiveRandomPowerBall();
                }
