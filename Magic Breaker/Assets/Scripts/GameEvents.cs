@@ -11,5 +11,7 @@ public static class GameEvents
 
      public static Action<int> OnStreakChange; //Se pasa el valor de la racha que se lleva
 
+     public static Action OnBrickDestroyEvent; 
+
      //TODO: Evento subida de nivel
 }

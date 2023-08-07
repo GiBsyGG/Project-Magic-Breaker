@@ -14,6 +14,7 @@ public class Brick : MonoBehaviour
 
           if(brickLife <= 0)
           {
+               GameEvents.OnBrickDestroyEvent?.Invoke();
                Destroy(gameObject);
           }
      }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,6 +51,11 @@ public class GameManager : MonoBehaviour
           HandleGameplay();
      }
 
+     public void WinGame()
+     {
+          HandleWinGame();
+     }
+
      public void GameOver()
      {
           HandleGameOver();
@@ -68,5 +74,11 @@ public class GameManager : MonoBehaviour
      private void HandleGameOver()
      {
           SceneManager.LoadScene("Scene_GameOver");
+     }
+
+     private void HandleWinGame()
+     {
+          //TODO: Añadir logica de siguiente nivel y una pequeña transicion
+          SceneManager.LoadScene("Scene_Win");
      }
 }
