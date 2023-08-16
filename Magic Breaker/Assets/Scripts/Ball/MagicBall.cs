@@ -32,7 +32,7 @@ public class MagicBall : MonoBehaviour
 
                     default:
                          if (collision.gameObject.TryGetComponent(out Brick brick))
-                              brick.takeImpact(ballDamage);
+                              brick.TakeImpact(ballDamage);
 
                          break;
                }
@@ -60,7 +60,7 @@ public class MagicBall : MonoBehaviour
           foreach (Collider2D collider in colliders)
           {
                if (collider.gameObject.TryGetComponent(out Brick brickf))
-                    brickf.takeImpact(ballDamage);
+                    brickf.TakeImpact(ballDamage);
           }
      }
 
@@ -68,7 +68,7 @@ public class MagicBall : MonoBehaviour
      {
           // Aplicar daño a bloque impactado
           if (collision.gameObject.TryGetComponent(out Brick brickThunderImp))
-               brickThunderImp.takeImpact(ballDamage);
+               brickThunderImp.TakeImpact(ballDamage);
 
           // Uso Raycast All Para aplicar daño a izquierda y derecha
           // Este devuelve un array con los impactos del raycast
@@ -81,7 +81,7 @@ public class MagicBall : MonoBehaviour
           {
                if (hit.collider.gameObject.TryGetComponent(out Brick brickt))
                {
-                    brickt.takeImpact(ballDamage);
+                    brickt.TakeImpact(ballDamage);
                }
           }
           // Aplicar daño a line izquierda
@@ -89,7 +89,7 @@ public class MagicBall : MonoBehaviour
           {
                if (hit.collider.gameObject.TryGetComponent(out Brick brickt))
                {
-                    brickt.takeImpact(ballDamage);
+                    brickt.TakeImpact(ballDamage);
                }
           }
      }

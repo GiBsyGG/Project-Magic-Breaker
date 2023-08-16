@@ -11,7 +11,7 @@ public class Brick : MonoBehaviour
      [SerializeField]
      private Sprite[] brickSprites;
 
-     public void takeImpact(int damage)
+     public void TakeImpact(int damage)
      {
           brickLife -= damage;
 

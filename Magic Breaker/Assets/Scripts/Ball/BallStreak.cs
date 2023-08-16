@@ -11,9 +11,6 @@ public class BallStreak : MonoBehaviour
      [SerializeField]
      private int maxStreak = 25;
 
-     [SerializeField]
-     private HUDBounceBar bounceBar;  //Para enviar el máximo a la barra
-
      private int streak = 0;
 
      private bool maxReached = false; // Flag para controlar si es alcanzado el maximo
@@ -33,7 +30,7 @@ public class BallStreak : MonoBehaviour
      {
           if (ballMovement != null)
           {
-               // Racha maxima de 50 rebotes, cada 10 aumenta el umbral de velocidad
+               // Racha maxima de rebotes, cada 5 aumenta el umbral de velocidad
                if(streak < maxStreak)
                {
                     streak++;
